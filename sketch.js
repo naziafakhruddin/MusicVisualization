@@ -53,7 +53,7 @@ function setup(){
 	fourier = new p5.FFT();
 	//instantiate the Amplitude object
 	amp = new p5.Amplitude();
-
+	
 	 //create a new visualisation container and add visualisations
 	 vis = new Visualisations();
 	 vis.add(new Spectrum());
@@ -121,7 +121,11 @@ function draw(){
 		text("5 - Both visualisation and music can be paused \n and played again using the Play and Pause button.",
 			  width / 2 - 220, 620)
 		text("6 - Press the Hide Help button to look at the \n visualisations.",
-			  width / 2 - 220, 670)	  
+			  width / 2 - 220, 670)	
+		text("7 - For changing the visualisation and resizing the window press the keys ",
+			  width / 2 - 220, 730) 
+		text(" Press 1 - Spectrum  \n Press 2 - Wavepattern \n Press 3 - Needles \n Press 4 - Spirograph \n Press 5 - Kaleidoscope \n Press 6 - Bird \n Press 7 - Ridgeplots \n Press 8 - Pendulum",
+			  width / 2 - 220, 770) 
 		
 	}else{
 		//draw the selected visualisation
@@ -224,7 +228,7 @@ function musicSelector(){
 }
 function helpButton(){
 	button = createButton("Show Help");
-	button.position(20,height-50);
+	button.position(20,340);
 	button.style('width', '130px');
 	button.style('height', '38px');
 	button.style('fontSize', '15px');

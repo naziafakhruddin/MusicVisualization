@@ -1,8 +1,31 @@
+/*
+  1- Draw the bird with the bezier curve sitting on a perch.
+    a- Position of the bird and the perch should change when the canvas is resized.
+    b- Draw method should have the bird and the perch methods in  it.
+  2- Add flowers to the surrounding by calling method inside the method.
+    a- Make a method of flower with parameters(x,w,h,r,g,b,) need to be assigned .
+    i- Call the method flower inside the method perch and assign the values to 
+    flowers at differnt x-axis.
+    ii- Using for loop make multiple rows of these flowers with stem and stars in the sky.
+  3- Add amplitude to the beak and wings of the bird which make it look like singing.
+    a- The upper beak should move up as the amplitude levels are minus from the y-axis.
+    b- The lower beak should move down as the amplitude levels are added to the y-axis
+  4- Add FFT - getEnergy() to the flowers and the stars  .
+    a- Flowers colours will vary according to treble,bass and mid frequencies
+     using FFT.get energy(). 
+    b- Stars sizes change as the frequency levels of treble and mid changes.
+  5- Amplitude values added to the stem of the flower.
+    a- Stem of the flower have amplitude level add to the y-axis.
+  6- OnResize the position of the bird will change.
+
+ */
+
+
 class Bird {
     constructor() {
       this.name = "Bird";
       this.onResize()
-      this.r = 20
+
     }
     onResize(){
       this.x = width/2;
@@ -28,12 +51,12 @@ class Bird {
       line(this.x - 87,this.y + 318,this.x - 87,this.y + height )
       line(this.x - 8 ,this.y + 315,this.x - 8 ,this.y + height )
      
-      //method flower is called inside method trees
+      //method flower is called inside method perch and values to arguments are given.
       for(let i = 0; i < width - 50; i += 80){
-          this.flower(24 + i, 25, 60, 255, 255, 0.5 * energy1)
-          this.flower(54 + i, 25, 60, 80 + i, 10 + energy, 255) 
-          this.flower(74 + i, 25, 60, 180 + i, 20 - energy1, 155)
-          
+          this.flower(24 + i, 25, 60, 255, 240+energy2, 0.5 * energy1)
+          this.flower(54 + i, 25, 60, 80 + energy1, 10 + energy, 255) 
+          this.flower(74 + i, 25, 60, 180 + energy, 20 - energy1, 155)
+          //stars
           let m =map(sin(i),1,-1,0,400)
           fill(255,255,0) 
           ellipse(i + 20, m, 3 + energy2/20, 3 + energy2/20)
@@ -47,6 +70,7 @@ class Bird {
       strokeWeight(3)
       //stem
       let vol = amp.getLevel()
+     
       line(x, height, x, 1090 - vol * g)
       //leaves
       fill(0, 168, 0)
@@ -240,7 +264,6 @@ class Bird {
       stroke(128,128,0)
       arc(this.x - 82, this.y + 308, 35, 10, PI, 0);
       arc(this.x - 85, this.y + 310, 30, 8, PI, 0);
-    }
-
+    } 
 }
   

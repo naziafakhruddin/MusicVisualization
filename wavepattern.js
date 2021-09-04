@@ -38,7 +38,7 @@ function WavePattern(){
 		
 			stroke(x+i,i/2+y,0)
 			//making a new bezier line using the mapped x and y coordinates
-			bezier(x,y+150,x+20,y+150,x-20,y+150,x,y+150)
+			bezier(x,y+350,x+20,y+350,x-20,y+350,x,y+350)
 		
 		}
 		

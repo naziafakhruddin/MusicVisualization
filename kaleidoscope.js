@@ -1,5 +1,19 @@
 /* Extension of blocks mid, high and low . Constructor function by the name of  
 Kaleidoscope visualization using noise and FFT.getEnergy()*/
+/*
+	1- Draw a vertex shape and translate it to the center .
+	2- Map the x and y-axis of the vertex to the noise.
+	3- Associate the vertex shape with the slider,so the number of edges of
+	 the vertex shape can be changed.
+	4- Make rectangular shapes of different sizes.
+		a- Use the scale()to scale and invert vertically the shape creating
+		 mirror images of the shapes like in kleidoscope.
+		b- Rotate the shapes and associate its rotation with highMid frequency by FFT getEnergy().
+		c- Associate rest of the shapes size with bass and treble frquencies using FFT getEnergy().
+	5- Add alpha to stroke.
+	 a- Alpha of different intensities are added to give glassy effect.
+	6-On resize the the position should adjust accordingly.
+ */
 class Kaleidoscope{
 	constructor(){
 		//vis.name 
@@ -40,6 +54,8 @@ class Kaleidoscope{
 		//translate the vertex shape to the center of the canvas.
 			translate(width/2,height/2)
 			beginShape()
+			/*For loop with slider function is added in the forloop to increase and 
+			decrease the number of edges of the vertex */
 			for(let i = 0; i < sliderNoise.value(); i++){
 				fill(i * b ,163,163,150);
 				stroke(i + b, 163, 163)
@@ -55,7 +71,8 @@ class Kaleidoscope{
 			
 			endShape(CLOSE)
 			
-		//the noise will start interacting with the vertex shape at bass frequency is greater than 150.
+		/*Conditional statement that the noise will start interacting with the vertex shape 
+		at bass frequency is greater than 50.*/
 			if(b > 50){
 				//offset noise value is incremented
 				this.prog += 0.008;
@@ -80,7 +97,7 @@ class Kaleidoscope{
 				}
 			
 				strokeWeight(15);
-				//rotating with the rotattion variable is divided by 50 ,to give movement.
+				//rotating with the rotation variable is divided by 50,to give movement.
 				rotate(this.rot/50)
 				//drawing the shapes.
 				stroke(this.angle * i, 100, 100,150);
@@ -95,8 +112,10 @@ class Kaleidoscope{
 
 				stroke(this.angle * i, 100, 100, 160);
 				rect(h + this.size + 50, h + this.size + 50, 50, 50, 10);
-				//the getEnergy()of fourier will start rotating when the highMid frequency is greater than 50.
-				if(h > 50){
+
+				/*Conditional statement for the getEnergy()of fourier will start 
+				rotating when the highMid frequency is greater than 50.*/
+				if(h > 150){
 					//the rotation value is incremented
 					this.rot += 0.01
 				}
